@@ -1,5 +1,5 @@
 name: dnssec_proof
-description: "A new Flutter FFI plugin project."
+description: "A Flutter FFI plugin for dnssec-proof"
 version: 0.0.1
 homepage:
 
@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
+  ffi: ^2.1.3
 
 dev_dependencies:
-  ffi: ^2.1.3
   ffigen: ^13.0.0
   flutter_test:
     sdk: flutter

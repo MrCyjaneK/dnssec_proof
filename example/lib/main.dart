@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:dnssec_proof/generated_bindings.g.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:dnssec_proof/dnssec_proof.dart' as dnssec_proof;
+import 'package:dnssec_proof/dnssec_proof.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,20 +19,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late int sumResult;
-  late Future<int> sumAsyncResult;
+  Uint8List proofData = Uint8List(0);
 
   @override
   void initState() {
     super.initState();
-    sumResult = dnssec_proof.sum(1, 2);
-    sumAsyncResult = dnssec_proof.sumAsync(3, 4);
+
+    final queryName = "tips.user._bitcoin-payment.konsti.cloud.";
+    final data = DnsProver.getTxtProof(queryName);
+
+    setState(() {
+      proofData = data;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     const textStyle = TextStyle(fontSize: 25);
     const spacerSmall = SizedBox(height: 10);
+    final proofDataString = base64.encode(proofData);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -46,23 +55,10 @@ class _MyAppState extends State<MyApp> {
                   textAlign: TextAlign.center,
                 ),
                 spacerSmall,
-                Text(
-                  'sum(1, 2) = $sumResult',
+                SelectableText(
+                  'proof = $proofDataString',
                   style: textStyle,
                   textAlign: TextAlign.center,
-                ),
-                spacerSmall,
-                FutureBuilder<int>(
-                  future: sumAsyncResult,
-                  builder: (BuildContext context, AsyncSnapshot<int> value) {
-                    final displayValue =
-                        (value.hasData) ? value.data : 'loading';
-                    return Text(
-                      'await sumAsync(3, 4) = $displayValue',
-                      style: textStyle,
-                      textAlign: TextAlign.center,
-                    );
-                  },
                 ),
               ],
             ),

@@ -1,0 +1,16 @@
+[package]
+name = "dnssec_proof"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+edition = "2021"
+
+[dependencies]
+dnssec-prover = { git = "https://github.com/TheBlueMatt/dnssec-prover.git", rev = "a0763ddf79ec86b16bad5062ee9192d461e3fa8a", default-features = false, features = ["validation", "std"] }
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+

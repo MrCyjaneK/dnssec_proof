@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=../../ffigen.schema.json
+
+name: DnssecProver
+description: Bindings to `rust/src/dnssec_proof.h`.
+output: 'lib/generated_bindings.g.dart'
+headers:
+  entry-points:
+    - 'rust/src/dnssec_proof.h'
+functions:
+  include:
+    - 'get_txt_proof'
+    - 'get_a_proof' 
+    - 'get_aaaa_proof'
+    - 'free_error_string'
+
+
+structs:
+  exclude:
+    - '(.*)'
+
+unions:
+  exclude:
+    - '(.*)'
+
+enums:
+  exclude:
+    - '(.*)'
+
+unnamed-enums:
+  exclude:
+    - '(.*)'
+
+macros:
+  exclude:
+    - '(.*)'
+
+globals:
+  exclude:
+    - '(.*)'
+
+typedefs:
+  exclude:
+    - '(.*)'
