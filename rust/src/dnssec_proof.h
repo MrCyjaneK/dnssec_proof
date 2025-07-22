@@ -22,18 +22,4 @@ FFI_PLUGIN_EXPORT const unsigned char* get_txt_proof(
     const char** error_msg
 );
 
-FFI_PLUGIN_EXPORT const unsigned char* get_a_proof(
-    const char* sockaddr,
-    const char* query_name,
-    int* result_len,
-    const char** error_msg
-);
-
-FFI_PLUGIN_EXPORT const unsigned char* get_aaaa_proof(
-    const char* sockaddr,
-    const char* query_name,
-    int* result_len,
-    const char** error_msg
-);
-
 FFI_PLUGIN_EXPORT void free_error_string(const char* error_msg);

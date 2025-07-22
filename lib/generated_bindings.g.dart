@@ -48,62 +48,6 @@ class DnssecProver {
           ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
-  ffi.Pointer<ffi.UnsignedChar> get_a_proof(
-    ffi.Pointer<ffi.Char> sockaddr,
-    ffi.Pointer<ffi.Char> query_name,
-    ffi.Pointer<ffi.Int> result_len,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> error_msg,
-  ) {
-    return _get_a_proof(
-      sockaddr,
-      query_name,
-      result_len,
-      error_msg,
-    );
-  }
-
-  late final _get_a_proofPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedChar> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('get_a_proof');
-  late final _get_a_proof = _get_a_proofPtr.asFunction<
-      ffi.Pointer<ffi.UnsignedChar> Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
-  ffi.Pointer<ffi.UnsignedChar> get_aaaa_proof(
-    ffi.Pointer<ffi.Char> sockaddr,
-    ffi.Pointer<ffi.Char> query_name,
-    ffi.Pointer<ffi.Int> result_len,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> error_msg,
-  ) {
-    return _get_aaaa_proof(
-      sockaddr,
-      query_name,
-      result_len,
-      error_msg,
-    );
-  }
-
-  late final _get_aaaa_proofPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.UnsignedChar> Function(
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Int>,
-              ffi.Pointer<ffi.Pointer<ffi.Char>>)>>('get_aaaa_proof');
-  late final _get_aaaa_proof = _get_aaaa_proofPtr.asFunction<
-      ffi.Pointer<ffi.UnsignedChar> Function(
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Int>,
-          ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
-
   void free_error_string(
     ffi.Pointer<ffi.Char> error_msg,
   ) {
