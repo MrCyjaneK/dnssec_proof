@@ -25,7 +25,9 @@ class DnsProver {
       throw Exception(errorMsg);
     }
 
-    final result = proof.cast<Uint8>().asTypedList(length.value);
+    final result =
+        Uint8List.fromList(proof.cast<Uint8>().asTypedList(length.value));
+    lib.free_proof(proof, length.value);
 
     malloc.free(sockaddrPtr);
     malloc.free(queryNamePtr);

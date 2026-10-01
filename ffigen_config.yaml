@@ -11,6 +11,7 @@ functions:
     - 'get_txt_proof'
     - 'get_a_proof' 
     - 'get_aaaa_proof'
+    - 'free_proof'
     - 'free_error_string'
 
 
