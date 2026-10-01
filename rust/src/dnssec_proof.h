@@ -22,4 +22,6 @@ FFI_PLUGIN_EXPORT const unsigned char* get_txt_proof(
     const char** error_msg
 );
 
+FFI_PLUGIN_EXPORT void free_proof(const unsigned char* proof, int len);
+
 FFI_PLUGIN_EXPORT void free_error_string(const char* error_msg);

@@ -136,8 +136,16 @@ pub unsafe extern "C" fn get_txt_proof(
         return ptr::null();
     }
 
+    let proof = proof.into_boxed_slice();
     *result_len = proof.len() as c_int;
-    proof.as_ptr()
+    Box::into_raw(proof) as *const c_uchar
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn free_proof(proof: *const c_uchar, len: c_int) {
+    if !proof.is_null() {
+        let _ = Box::from_raw(ptr::slice_from_raw_parts_mut(proof as *mut c_uchar, len as usize));
+    }
 }
 
 #[no_mangle]

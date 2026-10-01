@@ -48,6 +48,23 @@ class DnssecProver {
           ffi.Pointer<ffi.Int>,
           ffi.Pointer<ffi.Pointer<ffi.Char>>)>();
 
+  void free_proof(
+    ffi.Pointer<ffi.UnsignedChar> proof,
+    int len,
+  ) {
+    return _free_proof(
+      proof,
+      len,
+    );
+  }
+
+  late final _free_proofPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.UnsignedChar>, ffi.Int)>>('free_proof');
+  late final _free_proof = _free_proofPtr
+      .asFunction<void Function(ffi.Pointer<ffi.UnsignedChar>, int)>();
+
   void free_error_string(
     ffi.Pointer<ffi.Char> error_msg,
   ) {
